@@ -31,7 +31,7 @@ Implémentez des tests unitaires plus complets pour trois méthodes déjà écri
 ### 3. 💰 MoneyBag | 03_exercice |
 Dans cet exercice, vous mettrez en pratique la démarche du Test Driven Development dans un exemple plus complexe.
 
-### 4. 👥 Application CRM | 03_exercice
+### 4. 👥 Application CRM | 04_exercice
 Dans cet exercice, vous travaillerez sur une application de gestion de comptes clients avec un `UserRepository` pour la récupération des utilisateurs et un service fournissant des fonctions find et create. Écrivez des tests unitaires couvrant ces fonctions et leurs cas limites en simulant les appels à UserRepository.
 
 ## 📌 Mentions

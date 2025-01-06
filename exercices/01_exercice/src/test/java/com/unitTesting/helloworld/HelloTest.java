@@ -1,16 +1,43 @@
 package com.unitTesting.helloworld;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class HelloTest {
 
+  private static Hello helloObject;
+
+  @BeforeAll
+  public static void setup() {
+    helloObject = new Hello();
+  }
+
+  /* Version question 1
   @Test
-  public void testMessageWhenPrenomNull() {
-    // TODO:: Implémenter les tests
+  public void testMessageWithNull() {
+    String result = helloObject.message(null);
+    assertNotNull(result);
+    assertEquals("Hello World !", result);
+  }*/
+
+  @Test
+  public void testMessage_WhenPrenomIsNull_ThrowsIllegalArgumentException() {
+    IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+      helloObject.message(null);
+    });
+    assertEquals("prenom cannot be null", exception.getMessage());
   }
 
   @Test
-  public void testMessageWhenPrenomNotNull() {
-    // TODO:: Implémenter les tests
+  public void testMessageWithName() {
+    String result = helloObject.message("John");
+    assertNotNull(result);
+    assertEquals("Hello John !", result);
+    assertNotEquals("Hello World !", result);
   }
 }
