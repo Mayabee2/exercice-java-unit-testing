@@ -2,36 +2,54 @@ package com.unitTesting.stringhelper;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 public class StringHelperTest {
 
+
+  // =================== Méthode isPalindrome ===================
+  // TODO : implémenter ces tests
+
+  // =================== Méthode isAnagram
+  // TODO : implémenter ces tests
+
+
+  // =================== Méthode toCamelCase ===================
+
   @Test
-  public void isPalindromeTest() {
-    // TODO:: Implémenter les tests
+  public void testToCamelCase_WithSingleWord() {
+    assertEquals("Hello", new StringHelper().toCamelCase("hello"));
   }
 
   @Test
-  public void isAnagramTest() {
-    // TODO:: Implémenter les tests
+  public void testToCamelCase_WithSingleWord_UpperCase() {
+    assertEquals("World", new StringHelper().toCamelCase("WORLD"));
   }
 
-  //@Test
-  /*public void toCamelCaseTest() {
-    // cas simples
-    Assertions.assertEquals("HelloWorld", StringHelper.toCamelCase("hello world"));
-    Assertions.assertEquals("JavaProgramming", StringHelper.toCamelCase("java programming"));
+  @Test
+  public void testToCamelCase_WithMultipleWords() {
+    assertEquals("HelloWorld", new StringHelper().toCamelCase("hello world"));
+  }
 
-    // cas un mot
-    Assertions.assertEquals("Hello", StringHelper.toCamelCase("hello"));
-    Assertions.assertEquals("World", StringHelper.toCamelCase("WORLD"));
+  @Test
+  public void testToCamelCase_WithMultipleWords_UpperAndLowerCases() {
+    assertEquals("JavaProgramming", new StringHelper().toCamelCase("JAVA programming"));
+  }
 
-    // cas avec cases différentes
-    Assertions.assertEquals("HelloWorld", StringHelper.toCamelCase("Hello World"));
-    Assertions.assertEquals("JavaProgramming", StringHelper.toCamelCase("JAVA programming"));
+  @Test
+  public void testToCamelCase_WithSpaces() {
+    assertEquals("HelloWorld", new StringHelper().toCamelCase("   hello world   "));
+  }
 
-    // cas avec espaces
-    Assertions.assertEquals("HelloWorld", StringHelper.toCamelCase("   hello   world   "));
+  @Test
+  public void testToCamelCase_WithEmptyString() {
+    assertEquals("", new StringHelper().toCamelCase(""), "Une chaîne vide doit retourner une chaîne vide");
+  }
 
-    // cas de bord
-    Assertions.assertNull(StringHelper.toCamelCase(null));
-    Assertions.assertEquals("", StringHelper.toCamelCase(""));  }*/
+  @Test
+  public void testToCamelCase_WithNullString() {
+    assertNull(new StringHelper().toCamelCase(null), "Une chaîne null doit retourner null");
+  }
+
 }
