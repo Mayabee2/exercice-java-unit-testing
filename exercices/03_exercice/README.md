@@ -20,14 +20,14 @@ Commençons simplement avec une classe `Money` pour représenter une valeur pour
 donnée. Cette classe est capable d'ajouter deux valeurs ayant la même devise (méthode add).
 
 1. Parcourez le squelette de la classe `Money` et notez que la méthode `add` n'a pas encore été implémentée. 
-La classe de test `MoneyTest` existe déjà, avec une méthode `testSimpleAdd` qui doit tester le comportement de la méthode `add` de la classe `Money`.
+La classe de test `com.unittesting.moneybag.MoneyTest` existe déjà, avec une méthode `testSimpleAdd` qui doit tester le comportement de la méthode `add` de la classe `Money`.
 Lancez ce test. Pour l'instant, logiquement il ne fonctionne pas. Implémentez la méthode `add`.
 
 
 2. Relancez le test pour valider le fonctionnement de la méthode que vous venez d'écrire. Que se passe-t-il ? Comment l'expliquez vous ?
 
 
-3. Dans la classe `MoneyTest`, ajoutez une méthode `testEquals` qui teste l'égalité sur l'objet `Money`. Lancez le test.
+3. Dans la classe `com.unittesting.moneybag.MoneyTest`, ajoutez une méthode `testEquals` qui teste l'égalité sur l'objet `Money`. Lancez le test.
 
 
 4. Surcharger la méthode `equals` de la classe `Money` pour passer ce test avec succès.

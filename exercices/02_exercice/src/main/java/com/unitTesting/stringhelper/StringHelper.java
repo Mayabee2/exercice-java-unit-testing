@@ -1,4 +1,4 @@
-package com.aitesting.stringhelper;
+package com.unitTesting.stringhelper;
 
 import java.util.Arrays;
 

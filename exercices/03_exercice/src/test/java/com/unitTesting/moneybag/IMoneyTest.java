@@ -1,5 +1,10 @@
 package com.unitTesting.moneybag;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class IMoneyTest {
 
   private static Money f12CHF;

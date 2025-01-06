@@ -1,13 +1,11 @@
 package com.unitTesting.crm.domain;
 
-import com.unitTesting.crm.enums.RoleEnum;
+public class User {
 
-public class User
-
-  private Long id;
-  private String name;
-  private String phoneNumber;
-  private String role;
+  public Long id;
+  public String name;
+  public String phoneNumber;
+  public String role;
 
   public User(Long id, String name, String phoneNumber, String role) {
     this.id = id;

@@ -1,19 +1,12 @@
 package com.aitesting.crm;
 
 import com.unitTesting.crm.domain.User;
-import com.unitTesting.crm.enums.RoleEnum;
-import com.unitTesting.crm.exception.NotAllowedException;
-import com.unitTesting.crm.exception.PhoneNumberExistsException;
-import com.unitTesting.crm.exception.UserInvalidInfoException;
 import com.unitTesting.crm.repository.UserRepository;
 import com.unitTesting.crm.service.UserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 
 public class UserServiceTest {
 
