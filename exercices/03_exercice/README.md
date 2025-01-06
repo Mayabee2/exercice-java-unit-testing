@@ -83,13 +83,3 @@ return m.addMoneyBag(this);
 
 Modifiez `IMoney`, `Money` et `MoneyBag` afin que cela compile et que les tests unitaires soient passés.
 
-
-### 🚀 Comment exécuter les tests
-Lancez Maven dans le terminal pour exécuter les tests :
-
-```bash
-mvn clean test
-```
-
-## ✅ Critères de validation :
-

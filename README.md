@@ -8,16 +8,15 @@ Ce dépôt propose une série d'exercices pratiques pour vous aider à acquérir
 
 Les différents exercices de ce TP se trouvent tous dans le répertoire `exercices`. Chaque exercice est contenu dans un répertoire numéroté de façon croissante (01, 02, 0n...), suivi du mot `exercice`. Par exemple, le premier exercice se trouve dans le répertoire `./exercices/01_exercice`.
 
-Commencez par naviguer vers le répertoire de l'exercice voulu :
+Commencez par installer les dépendances nécessaires :
+```bash
+mvn clean install -DskipTests
+```
+
+Ensuite, naviguez vers le répertoire de l'exercice voulu :
 
 ```bash
 cd ./exercices/01_exercice
-```
-
-
-Ensuite, installez les dépendances nécessaires :
-```bash
-mvn clean install
 ```
 
 ## 🧩 Structure des Exercices

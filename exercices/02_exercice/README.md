@@ -15,14 +15,6 @@ Votre objectif est d'écrire des tests unitaires pour chaque méthode afin de co
 2. Assurez-vous de tester plusieurs cas pour chaque méthode, en couvrant les situations possibles. Un exemple est déjà fourni pour vous aider à démarrer.
 3. Vérifiez que tous les tests unitaires dans `StringHelperTest` passent avec succès.
 
-
-### 🚀 Comment exécuter les tests
-Lancez Maven dans le terminal pour exécuter les tests :
-
-```bash
-mvn clean test
-```
-
 ## ✅ Critères de validation
 - Tous les tests unitaires écrits réussissent.
 - Les cas de bord (par exemple, une chaîne null, une chaîne vide, etc.) sont bien couverts.

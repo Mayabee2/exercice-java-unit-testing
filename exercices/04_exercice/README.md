@@ -41,13 +41,6 @@ Parcourez les classes déjà créées sous **src/main/java** pour prendre connai
   - Une fois cette méthode implémentée, rédigez les tests unitaires pour couvrir ces cas dans `UserServiceTest`.
 
 
-### 🚀 Comment exécuter les tests
-Lancez Maven dans le terminal pour exécuter les tests :
-
-```bash
-mvn clean test
-```
-
 ## ✅ Critères de validation :
 
 - Les tests unitaires rédigés passent avec succès.

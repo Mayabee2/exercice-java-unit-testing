@@ -12,17 +12,6 @@ Votre objectif est d'écrire des tests unitaires afin de couvrir les différents
 2. Transformer la méthode **message** pour qu'elle génère une exception de type **IllegalArgumentException** si son paramêtre **prenom** est nul.
 3. Corriger la classe `HelloTest` pour qu'elle vérifie que l'exception est bien levée dans ce cas. Lancer les tests.
 
-### ⚙️ Comment compiler le code pour vérifier les erreurs de compilation
-
-```bash
-mvn clean compile
-```
-
-### 🚀 Comment exécuter les tests
-
-```bash
-mvn clean test
-```
 
 ## ✅ Critères de validation
 Tous les tests unitaires écrits réussissent.
