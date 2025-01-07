@@ -19,7 +19,7 @@ public class HelloTest {
 
   /* Version question 1
   @Test
-  public void testMessageWithNull() {
+  public void testMessageWithNull_ReturnsDefaultMessage() {
     String result = helloObject.message(null);
     assertNotNull(result);
     assertEquals("Hello World !", result);
@@ -34,7 +34,7 @@ public class HelloTest {
   }
 
   @Test
-  public void testMessageWithName() {
+  public void testMessageWithName_ReturnsPersonalizedMessage() {
     String result = helloObject.message("John");
     assertNotNull(result);
     assertEquals("Hello John !", result);

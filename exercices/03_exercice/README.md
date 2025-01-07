@@ -20,17 +20,17 @@ Commençons simplement avec une classe `Money` pour représenter une valeur pour
 donnée. Cette classe est capable d'ajouter deux valeurs ayant la même devise (méthode add).
 
 1. Parcourez le squelette de la classe `Money` et notez que la méthode `add` n'a pas encore été implémentée. 
-La classe de test `com.unittesting.moneybag.MoneyTest` existe déjà, avec une méthode `testSimpleAdd` qui doit tester le comportement de la méthode `add` de la classe `Money`.
-Lancez ce test. Pour l'instant, logiquement il ne fonctionne pas. Implémentez la méthode `add`.
+La classe de test `com.unitTesting.moneybag.MoneyTest` existe déjà, avec une méthode `testSimpleAdd` qui doit tester le comportement de la méthode `add` de la classe `Money`.
+Lancez ce test. Pour l'instant, logiquement il ne fonctionne pas (c'est l'occasion de tester les fonctionnalités de débogage de tests). Implémentez la méthode `add`.
 
 
 2. Relancez le test pour valider le fonctionnement de la méthode que vous venez d'écrire. Que se passe-t-il ? Comment l'expliquez vous ?
 
 
-3. Dans la classe `com.unittesting.moneybag.MoneyTest`, ajoutez une méthode `testEquals` qui teste l'égalité sur l'objet `Money`. Lancez le test.
+3. Dans la classe `com.unittesting.moneybag.MoneyTest`, ajoutez une méthode `testEquals` qui teste l'égalité sur deux objets `Money`. Prévoyez différentes scénarii. Lancez le test.
 
 
-4. Surcharger la méthode `equals` de la classe `Money` pour passer ce test avec succès.
+4. Surcharger la méthode `equals` de la classe `Money` pour passer ce test avec succès. Le test de la méthode `add` doit également fonctionner désormais.
 
 
 5. **Refactorisation des tests** : si ce n'est pas déjà fait, utilisez l'annotation `@BeforeAll` afin de mutualiser la partie création de données des deux tests. 
@@ -42,44 +42,29 @@ des devises multiples. Pour cela, introduisons la classe `MoneyBag` permettant d
 1. Par soucis de simplicité, la classe `MoneyBag` a été en partie implémentée pour vous. Parcourez la classe pour en comprendre le fonctionnement.
 
 
-2. De la même manière, une première méthode a été implémentée pour vous dans la classe `MoneyBagTest`. Lancez-là et vérifiez qu'elle échoue. A partir de cette méthode de test, écrire la méthode `equals` de la classe `MoneyBag` pour éviter les mêmes erreurs que `Money` dans la partie précédente. Vérifiez que le test réussisse.
+2. De la même manière, une première méthode a été implémentée pour vous dans la classe `MoneyBagTest`. Lancez-là et vérifiez qu'elle échoue. A partir de cette méthode de test, écrire la méthode `equals` de la classe `MoneyBag` pour éviter les mêmes erreurs que `Money` dans la partie précédente. Vérifiez que le test réussit.
 
 ### 3. 🤝 Intégration des classes `Money` et `MoneyBag`
 
-Maintenant que `MoneyBag` est créée, nous pouvons corriger la méthode `add` de la classe Money : vous pouvez remplacer la méthode `add` par sa version commentée.
-Cependant cette méthode ne va pas compiler à cause d'un problème de typage. Avec l'introduction de MoneyBag, nous avons 2 types pour représenter les monnaies. Afin de rendre cette distinction invisible au
-code client, introduisons une interface IMoney. 
+Maintenant que `MoneyBag` est créée, nous pouvons corriger la méthode `add` de la classe `Money` : vous pouvez remplacer la méthode `add` par sa version commentée.
+Cependant cette méthode ne va pas compiler à cause d'un problème de typage. Avec l'introduction de `MoneyBag`, nous avons 2 types pour représenter les monnaies. Afin de rendre cette distinction invisible au
+code client, introduisons une interface `IMoney`. 
 
-1. Faites en sorte que `Money` et `MoneyBag` implémentent cette interface.
+1. Faites en sorte que `Money` et `MoneyBag` implémentent cette interface. Faites les adaptations nécessaires sur les méthodes `add`.
 
 
 2. Afin de vraiment cacher les 2 types aux utilisateurs, il convient de prendre en charge toutes les combinaisons arithmétiques possibles entre `Money` et `MoneyBag`.
-Nous allons commencer par définir un nouveau jeu de tests. Observez la méthode `testMixedSimpleAdd` dans la classe `IMoneyTest`. En suivant le même schéma, écrivez les méthodes de tests suivantes :
+Nous allons commencer par définir un nouveau jeu de tests. Observez la méthode `testAddMoneyToMoney` dans la classe `IMoneyTest`. En suivant le même schéma, écrivez les méthodes de tests suivantes :
 - `testAddMoneyBagToMoney` : pour ajouter un `MoneyBag` à un simple `Money`
 - `testAddMoneyToMoneyBag` : pour ajouter un simple `Money` à un `MoneyBag`
 - `testAddMoneyBagToMoneyBag` : pour ajouter deux `MoneyBag`
 
 
-3. Les cas de test étant définis, nous pouvons commencer à implémenter les différentes combinaisons de `Money` et `MoneyBag`. 
-Une solution est l'utilisation d'un appel supplémentaire pour découvrir le type d'argument à gérer. 
+3. Les cas de test étant définis, nous pouvons commencer à implémenter l'addition pour les différentes combinaisons de `Money` et `MoneyBag`. La difficulté est que le comportement de la méthode doit s'adapter en fonction de si l'objet `IMoney` en paramètre est une instance de `Money` ou une instance de `MoneyBag`. Implémentez les méthodes `add` de `Money` et `MoneyBag` en utilisant la méthode `instanceof` pour tester le type de l'argument. Lancez les tests pour vérifier qu'ils réussissent.
+
+
+4.  Cette façon de faire en utilisant la méthode `instanceof` n'est pas la plus élégante. Une autre solution est l'utilisation d'un appel supplémentaire pour découvrir le type d'argument à gérer. 
 Nous appelons une méthode sur l'argument avec le nom de la méthode originale suivi du nom de la classe du récepteur. 
-Les méthodes add de Money et MoneyBag deviennent :
-
-class Money implements IMoney {
-//...
-public IMoney add(IMoney m) {
-return m.addMoney(this);
-}
-//...
-}
-
-import java.util.Vector;
-class MoneyBag implements IMoney {
-//...
-public IMoney add(IMoney m) {
-return m.addMoneyBag(this);
-}
-//...
-
-Modifiez `IMoney`, `Money` et `MoneyBag` afin que cela compile et que les tests unitaires soient passés.
+Modifiez `IMoney`, `Money` et `MoneyBag` afin que cela compile et que les tests unitaires passent.
+Cette façon de faire correspond au design pattern **Double Dispatch**.
 

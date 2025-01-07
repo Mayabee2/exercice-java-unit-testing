@@ -28,7 +28,7 @@ Parcourez les classes déjà créées sous **src/main/java** pour prendre connai
 
 - Dans `UserServiceTest`, un setup est déjà présent pour écrire des tests unitaires sur différentes fonctions de `UserService`.
 - Vous trouverez des squelettes de tests à compléter avec une description de ce qui est attendu.
-- Utilisez ces indications et Continue pour rédiger les tests unitaires nécessaires.
+- Utilisez ces indications pour rédiger les tests unitaires nécessaires.
 - N'oubliez pas de simuler (_mock_) les appels à `userRepository`.
 - Lancez les tests et assurez-vous qu'ils passent avec succès.
 
@@ -36,17 +36,23 @@ Parcourez les classes déjà créées sous **src/main/java** pour prendre connai
 
 - Nous souhaitons ajouter une méthode `void deleteUser(Long id)` qui respecte les règles suivantes :
   - Si aucun utilisateur n'est associé à cet identifiant, aucune action n'est effectuée.
-  - Si l'utilisateur existe et a le rôle Admin, l'opération doit échouer en renvoyant une exception `NotAllowedException` avec le message _"You cannot delete an admin user"_.
+  - Si l'utilisateur existe et a le rôle "admin", l'opération doit échouer en renvoyant une exception `NotAllowedException` avec le message _"You cannot delete an admin user"_.
   - La méthode `deleteUser(id)` dans `UserRepository` ainsi que l'exception existent déjà.
   - Une fois cette méthode implémentée, rédigez les tests unitaires pour couvrir ces cas dans `UserServiceTest`.
 
+### 3. Refactorisation
+
+- Modifier le nom des méthodes de test pour respecter les bonnes pratiques de nommage d'un test unitaire.
 
 ## ✅ Critères de validation :
 
 - Les tests unitaires rédigés passent avec succès.
 - Les tests couvrent les différentes règles, y compris la vérification de l'unicité du numéro de téléphone.
 
-### 💡 Conseils pour Mockito :
+## 📌 Mentions
+Exercice créé par par Rahul Ramhasaha, développeur à Onepoint (légèrement adapté).
+
+## 💡 Conseils pour Mockito :
 
 Utilisez cette cheatsheet pour vous aider à mocker certains comportements courants :
 

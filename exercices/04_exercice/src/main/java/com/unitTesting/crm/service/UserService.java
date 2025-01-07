@@ -1,9 +1,12 @@
 package com.unitTesting.crm.service;
 
 import com.unitTesting.crm.domain.User;
+import com.unitTesting.crm.exception.NotAllowedException;
 import com.unitTesting.crm.exception.PhoneNumberExistsException;
 import com.unitTesting.crm.exception.UserInvalidInfoException;
 import com.unitTesting.crm.repository.UserRepository;
+
+import java.util.Objects;
 
 public class UserService {
   private final UserRepository userRepository;
@@ -30,9 +33,14 @@ public class UserService {
   }
 
   public void deleteUser(Long id) {
-    // TODO :: Implémenter cette méthode
-    // Si l'utilisateur n'existe pas, alors rien ne se passe
-    // si l'utilisateur existe mais a le rôle admin, alors renvoyer une exception NotAllowedException
+    User user = userRepository.findById(id);
+    if(user == null) {
+      return;
+    }
+    if(Objects.equals(user.role, "admin")) {
+      throw new NotAllowedException("You cannot delete an admin user");
+    }
+    userRepository.deleteUser(id);
   }
 
 }

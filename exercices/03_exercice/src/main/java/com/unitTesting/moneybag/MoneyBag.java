@@ -2,7 +2,7 @@ package com.unitTesting.moneybag;
 
 import java.util.Vector;
 
-class MoneyBag {
+class MoneyBag implements IMoney{
 
   private Vector<Money> fMonies = new Vector<Money>();
 
@@ -32,5 +32,82 @@ class MoneyBag {
       }
     }
   }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+
+    if (obj == null || getClass() != obj.getClass())
+      return false;
+
+    MoneyBag other = (MoneyBag) obj;
+
+    if (this.fMonies.size() != other.fMonies.size())
+      return false;
+
+    // Tri des listes avant comparaison
+    Vector<Money> thisSorted = new Vector<>(fMonies);
+    thisSorted.sort((m1, m2) -> m1.currency().compareTo(m2.currency()));
+
+    Vector<Money> otherSorted = new Vector<>(other.fMonies);
+    otherSorted.sort((m1, m2) -> m1.currency().compareTo(m2.currency()));
+
+    for (int i = 0; i < thisSorted.size(); i++) {
+      Money thisMoney = thisSorted.get(i);
+      Money otherMoney = otherSorted.get(i);
+
+      if (!thisMoney.equals(otherMoney)) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  /* Version avec instanceof
+  @Override
+  public IMoney add(IMoney m) {
+    if (m instanceof Money) {
+      // Ajoute un Money à ce MoneyBag
+      Money money = (Money) m;
+      MoneyBag result = new MoneyBag(fMonies.toArray(new Money[0]));
+      result.appendMoney(money);
+      return result;
+    } else if (m instanceof MoneyBag) {
+      // Fusionne deux MoneyBag
+      MoneyBag other = (MoneyBag) m;
+      MoneyBag result = new MoneyBag(fMonies.toArray(new Money[0]));
+      for (Money money : other.fMonies) {
+        result.appendMoney(money);
+      }
+      return result;
+    }
+
+    throw new IllegalArgumentException("Type non pris en charge : " + m.getClass());
+  }*/
+
+  @Override
+  public IMoney add(IMoney m) {
+    return m.addMoneyBag(this); // Délégation à l'argument
+  }
+
+  @Override
+  public IMoney addMoney(Money m) {
+    // Logique pour ajouter un Money au MoneyBag
+    this.appendMoney(m);
+    return this;
+  }
+
+  @Override
+  public IMoney addMoneyBag(MoneyBag m) {
+    // Logique pour fusionner deux MoneyBag
+    for (Money money : m.fMonies) {
+      this.appendMoney(money);
+    }
+    return this;
+  }
+
+
 }
 
