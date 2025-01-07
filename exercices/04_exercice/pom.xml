@@ -10,7 +10,7 @@
     <relativePath>../../pom.xml</relativePath>
   </parent>
 
-  <artifactId>crm</artifactId>
+  <artifactId>moneybag</artifactId>
 
   <properties>
     <maven.compiler.source>21</maven.compiler.source>

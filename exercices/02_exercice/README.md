@@ -1,4 +1,4 @@
-# 📝 Exercice 1- Tests Unitaires plus avancés
+# 📝 Exercice 2 - Tests Unitaires plus avancés
 
 ## 🎯 Objectif
 Dans la classe `StringHelper`, nous avons trois fonctions utilitaires à tester:
@@ -18,3 +18,6 @@ Votre objectif est d'écrire des tests unitaires pour chaque méthode afin de co
 ## ✅ Critères de validation
 - Tous les tests unitaires écrits réussissent.
 - Les cas de bord (par exemple, une chaîne null, une chaîne vide, etc.) sont bien couverts.
+
+## 📌 Mentions
+Exercice créé par par Rahul Ramhasaha, développeur à Onepoint (légèrement adapté).

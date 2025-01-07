@@ -15,3 +15,6 @@ Votre objectif est d'écrire des tests unitaires afin de couvrir les différents
 
 ## ✅ Critères de validation
 Tous les tests unitaires écrits réussissent.
+
+## 📌 Mentions
+Exercice emprunté à Frédérique Laforest.

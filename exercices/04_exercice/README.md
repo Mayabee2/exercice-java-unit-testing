@@ -1,72 +1,72 @@
-# 📝 Exercice 3 - TU + Mocking ~ 20 minutes
+# 📝 Exercice 4 - TDD 
 
-## 🎯 Objectifs
-Dans cet exercice, vous travaillerez avec une petite application de gestion de comptes clients, _crm_. Il s'agit d'une application simplifiée, avec un nombre limité de fonctionnalités.
+Nous allons écrire un programme qui résout le problème de la représentation arithmétique avec plusieurs devises.
+L'addition arithmétique entre deux objets de même devise est triviale, il suffit d'ajouter les deux montants.
+De simples nombres suffisent ; les devises peuvent être ignorées. Les choses deviennent intéressantes une
+fois plusieurs devises impliquées. On ne peut pas simplement convertir une devise en une autre pour effectuer des opérations arithmétiques puisqu'il n'y a pas un unique taux de change.
 
-🔍 **Note** : Cette application n'utilise pas de réelle base de données, il vous sera donc demandé de _"mocker"_ les composants non contrôlés dans vos tests.
+Dans cet exercice, nous allons aborder le démarche du Test Driven Development (TDD). 
+Pour rappel, le TDD consiste à rédiger les tests unitaires avant même d'écrire le code. Ces tests définissent le comportement attendu des fonctions. Une fois le code implémenté, les tests permettent de valider son bon fonctionnement.
 
-## 📏 Architecture
+## 🛠️ Instructions
 
-Parcourez les classes déjà créées sous **src/main/java** pour prendre connaissance du fonctionnement de l'application:
-- La classe `User` représente un utilisateur et les différents attributs qui lui sont associés.
-
-
-- C'est dans la classe `UserService` que se trouve toute la logique métier (fonctionnalités) de notre application. Pour l'instant, deux méthodes sont implémentées
-  - `getUserName` qui permet de retrouver le nom d'un utilisateur à partir de son identifiant (on fournit l'identifiant de l'utilisateur et son nom est récupéré depuis la base de données)
-  - `createNewUser` qui permet d'inscrire un nouvel utilisateur en base de donnée.
+Suivez les étapes ci-dessous pour implémenter les différents tests et fonctions.
 
 
-- La classe `UserRepository` est responsable des interactions avec la base de données. En effet, dans une architecture bien conçue, chaque composant est responsable d'une seule préoccupation spécifique. Pour la classe de service `UserService`, il s'agit de gérer la logique métier de l'application (vérifier les règles ou lever une exception, par exemple si le numéro de téléphone fourni correspond à celui d'un utilisateur déjà existant). `UserService` délègue ainsi à `UserRepository` chaque opérations d'accès à la base de données (en lecture, écriture). Les méthodes de `UserRepository` ne sont pas implémentées car nous allons simuler les lectures/écritures en base. 
+## 🐾 Étapes
+
+### 🪙 1. Classe Money
+Commençons simplement avec une classe `Money` pour représenter une valeur pour une devise
+donnée. Cette classe est capable d'ajouter deux valeurs ayant la même devise (méthode add).
+
+1. Parcourez le squelette de la classe `Money` et notez que la méthode `add` n'a pas encore été implémentée. 
+La classe de test `com.unittesting.moneybag.MoneyTest` existe déjà, avec une méthode `testSimpleAdd` qui doit tester le comportement de la méthode `add` de la classe `Money`.
+Lancez ce test. Pour l'instant, logiquement il ne fonctionne pas (c'est d'ailleurs l'occasion de tester les fonctionnalités de débogage de tests). Implémentez la méthode `add`.
 
 
-- Plusieurs exceptions peuvent être levées si les paramètres en entrée des méthodes ne respectent pas certaines règles. Ces exceptions sont regroupées sous le package **exception**. Inutile de s'attarder sur l'implémentation de ces classes.
+2. Relancez le test pour valider le fonctionnement de la méthode que vous venez d'écrire. Que se passe-t-il ? Comment l'expliquez vous ?
 
 
-## 🛠️ Étapes
-
-### 1. Implémentation des tests unitaires dans `UserServiceTest`
-
-- Dans `UserServiceTest`, un setup est déjà présent pour écrire des tests unitaires sur différentes fonctions de `UserService`.
-- Vous trouverez des squelettes de tests à compléter avec une description de ce qui est attendu.
-- Utilisez ces indications et Continue pour rédiger les tests unitaires nécessaires.
-- N'oubliez pas de simuler (_mock_) les appels à `userRepository`.
-- Lancez les tests et assurez-vous qu'ils passent avec succès.
-
-### 2. Ajout de la fonctionnalité `deleteUser` dans `UserService`
-
-- Nous souhaitons ajouter une méthode `void deleteUser(Long id)` qui respecte les règles suivantes :
-  - Si aucun utilisateur n'est associé à cet identifiant, aucune action n'est effectuée.
-  - Si l'utilisateur existe et a le rôle Admin, l'opération doit échouer en renvoyant une exception `NotAllowedException` avec le message _"You cannot delete an admin user"_.
-  - La méthode `deleteUser(id)` dans `UserRepository` ainsi que l'exception existent déjà.
-  - Une fois cette méthode implémentée, rédigez les tests unitaires pour couvrir ces cas dans `UserServiceTest`.
+3. Dans la classe `com.unittesting.moneybag.MoneyTest`, ajoutez une méthode `testEquals` qui teste l'égalité sur l'objet `Money`. Prévoyez différentes scénarii. Lancez le test.
 
 
-## ✅ Critères de validation :
+4. Surcharger la méthode `equals` de la classe `Money` pour passer ce test avec succès. Le test de la méthode `add` doit également fonctionner désormais.
 
-- Les tests unitaires rédigés passent avec succès.
-- Les tests couvrent les différentes règles, y compris la vérification de l'unicité du numéro de téléphone.
 
-### 💡 Conseils pour Mockito :
+5. **Refactorisation des tests** : si ce n'est pas déjà fait, utilisez l'annotation `@BeforeAll` afin de mutualiser la partie création de données des deux tests. 
 
-Utilisez cette cheatsheet pour vous aider à mocker certains comportements courants :
+### 2. 💰 Classe MoneyBag
+Maintenant que la classe `Money` semble fonctionner pour une unique devise, nous allons prendre en charge
+des devises multiples. Pour cela, introduisons la classe `MoneyBag` permettant d'agréger des valeurs de différentes devises.
 
-```java
-// Simuler un retour pour une recherche par ID
-when(userRepository.findById(1L)).thenReturn(new User(...));
+1. Par soucis de simplicité, la classe `MoneyBag` a été en partie implémentée pour vous. Parcourez la classe pour en comprendre le fonctionnement.
 
-// Vérifier si une fonction est appelée un certain nombre de fois
-verify(userRepository, times(n)).findById(1L);
 
-// Vérifier que la fonction n'est jamais appelée
-verify(userRepository, never()).deleteUser(1L);
+2. De la même manière, une première méthode a été implémentée pour vous dans la classe `MoneyBagTest`. Lancez-là et vérifiez qu'elle échoue. A partir de cette méthode de test, écrire la méthode `equals` de la classe `MoneyBag` pour éviter les mêmes erreurs que `Money` dans la partie précédente. Vérifiez que le test réussisse.
 
-// Vérifier la valeur d'un argument d'entrée
-verify(userRepository).save(argThat(user -> user.getName().equals("John")));
+### 3. 🤝 Intégration des classes `Money` et `MoneyBag`
 
-// Vérifier que deux objets sont égaux
-assertEquals(expected, actual);
+Maintenant que `MoneyBag` est créée, nous pouvons corriger la méthode `add` de la classe `Money` : vous pouvez remplacer la méthode `add` par sa version commentée.
+Cependant cette méthode ne va pas compiler à cause d'un problème de typage. Avec l'introduction de `MoneyBag`, nous avons 2 types pour représenter les monnaies. Afin de rendre cette distinction invisible au
+code client, introduisons une interface `IMoney`. 
 
-// Récupérer une exception attendue
-assertThrows(ExpectedException.class, () -> {
-    // Code qui doit déclencher une exception
-});
+1. Faites en sorte que `Money` et `MoneyBag` implémentent cette interface.Faites les adaptations nécessaires sur les méthodes `add`.
+
+
+2. Afin de vraiment cacher les 2 types aux utilisateurs, il convient de prendre en charge toutes les combinaisons arithmétiques possibles entre `Money` et `MoneyBag`.
+Nous allons commencer par définir un nouveau jeu de tests. Observez la méthode `testAddMoneyToMoney` dans la classe `IMoneyTest`. En suivant le même schéma, écrivez les méthodes de tests suivantes :
+- `testAddMoneyBagToMoney` : pour ajouter un `MoneyBag` à un simple `Money`
+- `testAddMoneyToMoneyBag` : pour ajouter un simple `Money` à un `MoneyBag`
+- `testAddMoneyBagToMoneyBag` : pour ajouter deux `MoneyBag`
+
+
+3. Les cas de test étant définis, nous pouvons commencer à implémenter l'addition pour les différentes combinaisons de `Money` et `MoneyBag`. La difficulté est que le comportement de la méthode doit s'adapter en fonction de si l'objet `IMoney` en paramètre est une instance de `Money` ou une instance de `MoneyBag`. Implémentez les méthodes `add` de `Money` et `MoneyBag` en utilisant la méthode `instanceof` pour tester le type de l'argument. Lancez les tests pour vérifier qu'ils réussissent.
+
+
+4.  Cette façon de faire en utilisant la méthode `instanceof` n'est pas la plus élégante. Une autre solution est l'utilisation d'un appel supplémentaire pour découvrir le type d'argument à gérer. Nous appelons une méthode sur l'argument avec le nom de la méthode originale suivi du nom de la classe du récepteur.Modifiez `IMoney`, `Money` et `MoneyBag` afin que cela compile et que les tests unitaires passent.
+    Cette façon de faire correspond au design pattern **Double Dispatch**. 
+    Modifiez `IMoney`, `Money` et `MoneyBag` afin que cela compile et que les tests unitaires soient passés.
+
+## 📌 Mentions
+Exercice emprunté à Frédérique Laforest.
+
