@@ -19,6 +19,8 @@ Ensuite, naviguez vers le répertoire de l'exercice voulu :
 cd ./exercices/01_exercice
 ```
 
+Les consignes propres à chaque exercice se trouvent dans le fichier README du répertoire correspondant. Pour chaque exercice, c'est tout ce qui se trouve dans le dossier `src` qui va nous intéresser.
+
 ## 🧩 Structure des Exercices
 Pour travailler sur un exercice, basculez sur le répertoire correspondant et suivez les instructions du README ou les commentaires dans le code.
 
@@ -28,16 +30,15 @@ Implémentez des tests unitaires pour une méthode simple.
 ### 2. 🔤 StringHelper | 02_exercice |
 Implémentez des tests unitaires plus complets pour trois méthodes déjà écrites.
 
-### 3. 👥 Application CRM | 03_exercice
-Dans cet exercice, vous travaillerez sur une application de gestion de comptes clients avec un `UserRepository` pour la récupération des utilisateurs et un service fournissant des fonctions find et create. Écrivez des tests unitaires couvrant ces fonctions et leurs cas limites en simulant les appels à UserRepository.
-
-### 4. 💰 MoneyBag | 04_exercice |
+### 3. 💰 MoneyBag | 03_exercice |
 Dans cet exercice, vous mettrez en pratique la démarche du Test Driven Development dans un exemple plus complexe.
 
+### 4. 👥 Application CRM | 04_exercice
+Dans cet exercice, vous travaillerez sur une application de gestion de comptes clients avec un `UserRepository` pour la récupération des utilisateurs et un service fournissant des fonctions find et create. Écrivez des tests unitaires couvrant ces fonctions et leurs cas limites en simulant les appels à UserRepository.
 
 ## 📌 Mentions
-- Les exercices 1 et 4 ont été empruntés (/adaptés) à Frédérique LAFOREST, professeure au département Informatique.
-- Les exercices 2 et 3 ont été conçus par Rahul RAMSAHA, développeur chez Onepoint.
+- Les exercices 1 et 3 ont été empruntés (/adaptés) à Frédérique LAFOREST, professeure au département Informatique.
+- Les exercices 2 et 4 ont été conçus par Rahul RAMSAHA, développeur chez Onepoint.
 
 
 
