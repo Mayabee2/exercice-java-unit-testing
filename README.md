@@ -19,6 +19,8 @@ Ensuite, naviguez vers le répertoire de l'exercice voulu :
 cd ./exercices/01_exercice
 ```
 
+Les consignes propres à chaque exercice se trouvent dans le fichier README du répertoire correspondant. Pour chaque exercice, c'est tout ce qui se trouve dans le dossier `src` qui va nous intéresser.
+
 ## 🧩 Structure des Exercices
 Pour travailler sur un exercice, basculez sur le répertoire correspondant et suivez les instructions du README ou les commentaires dans le code.
 
