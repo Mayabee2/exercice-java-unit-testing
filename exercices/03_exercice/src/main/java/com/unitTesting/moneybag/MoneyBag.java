@@ -1,5 +1,6 @@
 package com.unitTesting.moneybag;
 
+import java.util.Comparator;
 import java.util.Vector;
 
 class MoneyBag implements IMoney{
@@ -24,11 +25,11 @@ class MoneyBag implements IMoney{
       int i = 0;
       while ((i < fMonies.size()) && (!(fMonies.get(i).currency().equals(m.currency())))) {
         i++;
-        if (i >= fMonies.size()) {
-          fMonies.add(m);
-        } else {
-          fMonies.set(i, new Money(fMonies.get(i).amount() + m.amount(), m.currency()));
-        }
+      }
+      if (i >= fMonies.size()) {
+        fMonies.add(m);
+      } else {
+        fMonies.set(i, new Money(fMonies.get(i).amount() + m.amount(), m.currency()));
       }
     }
   }
@@ -48,10 +49,10 @@ class MoneyBag implements IMoney{
 
     // Tri des listes avant comparaison
     Vector<Money> thisSorted = new Vector<>(fMonies);
-    thisSorted.sort((m1, m2) -> m1.currency().compareTo(m2.currency()));
+    thisSorted.sort(Comparator.comparing(Money::currency));
 
     Vector<Money> otherSorted = new Vector<>(other.fMonies);
-    otherSorted.sort((m1, m2) -> m1.currency().compareTo(m2.currency()));
+    otherSorted.sort(Comparator.comparing(Money::currency));
 
     for (int i = 0; i < thisSorted.size(); i++) {
       Money thisMoney = thisSorted.get(i);
@@ -65,7 +66,7 @@ class MoneyBag implements IMoney{
     return true;
   }
 
-  /* Version avec instanceof
+  /* //Version avec instanceof
   @Override
   public IMoney add(IMoney m) {
     if (m instanceof Money) {
@@ -94,7 +95,6 @@ class MoneyBag implements IMoney{
 
   @Override
   public IMoney addMoney(Money m) {
-    // Logique pour ajouter un Money au MoneyBag
     this.appendMoney(m);
     return this;
   }
@@ -107,7 +107,6 @@ class MoneyBag implements IMoney{
     }
     return this;
   }
-
 
 }
 

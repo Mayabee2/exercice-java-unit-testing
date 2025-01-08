@@ -1,6 +1,7 @@
 package com.unitTesting.helloworld;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,13 +18,13 @@ public class HelloTest {
     helloObject = new Hello();
   }
 
-  /* Version question 1
+  @Disabled
   @Test
   public void testMessageWithNull_ReturnsDefaultMessage() {
     String result = helloObject.message(null);
     assertNotNull(result);
     assertEquals("Hello World !", result);
-  }*/
+  }
 
   @Test
   public void testMessage_WhenPrenomIsNull_ThrowsIllegalArgumentException() {

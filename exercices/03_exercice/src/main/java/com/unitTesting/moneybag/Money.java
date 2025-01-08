@@ -37,7 +37,7 @@ class Money implements IMoney{
 
   //========================= Troisième partie ============================
 
-  /* Version avec instanceof
+  /*//Version avec instanceof
   @Override
   public IMoney add(IMoney m) {
     if (m instanceof Money) {
@@ -63,8 +63,13 @@ class Money implements IMoney{
 
   @Override
   public IMoney addMoney(Money m) {
-    // Logique pour additionner deux Money
-    return new Money(this.amount + m.amount, this.currency);
+    if (this.currency().equals(m.currency())) {
+      // Si les devises sont identiques, on retourne un nouvel objet Money
+      return new Money(this.amount() + m.amount(), this.currency());
+    } else {
+      // Si les devises sont différentes, on retourne un MoneyBag
+      return new MoneyBag(new Money[]{this, m});
+    }
   }
 
   @Override

@@ -42,7 +42,7 @@ des devises multiples. Pour cela, introduisons la classe `MoneyBag` permettant d
 1. Par soucis de simplicité, la classe `MoneyBag` a été en partie implémentée pour vous. Parcourez la classe pour en comprendre le fonctionnement.
 
 
-2. De la même manière, une première méthode a été implémentée pour vous dans la classe `MoneyBagTest`. Lancez-là et vérifiez qu'elle échoue. A partir de cette méthode de test, écrire la méthode `equals` de la classe `MoneyBag` pour éviter les mêmes erreurs que `Money` dans la partie précédente. Vérifiez que le test réussit.
+2. De la même manière, une première méthode a été implémentée pour vous dans la classe `MoneyBagTest`. Lancez la et vérifiez qu'elle échoue. A partir de cette méthode de test, écrire la méthode `equals` de la classe `MoneyBag` pour éviter les mêmes erreurs que `Money` dans la partie précédente. Vérifiez que le test réussit.
 
 ### 3. 🤝 Intégration des classes `Money` et `MoneyBag`
 

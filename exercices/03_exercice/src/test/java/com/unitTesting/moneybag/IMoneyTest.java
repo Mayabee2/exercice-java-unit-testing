@@ -1,6 +1,7 @@
 package com.unitTesting.moneybag;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
@@ -32,7 +33,8 @@ public class IMoneyTest {
     // [12 CHF] + [7 USD] == {[12 CHF][7 USD]}
     Money bag[] = {f12CHF, f7USD};
     MoneyBag expected = new MoneyBag(bag);
-    assertEquals(expected, f12CHF.add(f7USD));
+    IMoney actual = f12CHF.add(f7USD);
+    assertEquals(actual, f12CHF.add(f7USD));
   }
 
   @Test
@@ -40,7 +42,8 @@ public class IMoneyTest {
     // {[12 CHF][7 USD]} + {[14 CHF][21 USD]} == {[26 CHF][28 USD]}
     Money[] bag = {new Money(26, "CHF"), new Money(28, "USD")};
     MoneyBag expected = new MoneyBag(bag);
-    assertTrue(fMB1.add(fMB2).equals(expected));
+    IMoney actual = fMB1.add(fMB2);
+    assertTrue(actual.equals(expected));
   }
 
   @Test
@@ -48,7 +51,8 @@ public class IMoneyTest {
     // [12 CHF] + {[14 CHF][21 USD]} == {[26 CHF][21 USD]}
     Money[] bag = {new Money(26, "CHF"), f21USD};
     MoneyBag expected = new MoneyBag(bag);
-    assertTrue(f12CHF.add(fMB2).equals(expected));
+    IMoney actual = f12CHF.add(fMB2);
+    assertTrue(actual.equals(expected));
   }
 
   @Test
