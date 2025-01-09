@@ -24,11 +24,11 @@ class MoneyBag {
       int i = 0;
       while ((i < fMonies.size()) && (!(fMonies.get(i).currency().equals(m.currency())))) {
         i++;
-        if (i >= fMonies.size()) {
-          fMonies.add(m);
-        } else {
-          fMonies.set(i, new Money(fMonies.get(i).amount() + m.amount(), m.currency()));
-        }
+      }
+      if (i >= fMonies.size()) {
+        fMonies.add(m);
+      } else {
+        fMonies.set(i, new Money(fMonies.get(i).amount() + m.amount(), m.currency()));
       }
     }
   }
