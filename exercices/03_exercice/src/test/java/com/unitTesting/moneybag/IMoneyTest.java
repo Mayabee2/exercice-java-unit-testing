@@ -1,6 +1,7 @@
 package com.unitTesting.moneybag;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -8,7 +9,6 @@ import org.junit.jupiter.api.TestInstance;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class IMoneyTest {
 
   private Money f12CHF;
@@ -18,7 +18,7 @@ public class IMoneyTest {
   private MoneyBag fMB1;
   private MoneyBag fMB2;
 
-  @BeforeAll
+  @BeforeEach
   public void setUp() {
     f12CHF = new Money(12, "CHF");
     f14CHF = new Money(14, "CHF");
